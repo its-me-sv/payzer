@@ -25,7 +25,7 @@ const SlideHandler: React.FC<props> = ({ml, mr, progress}) => {
       <SliderHandler>
         {progress !== 0 && <LeftArrow pressEvent={ml} />}
         {[...Array(4)].map((_, idx) => (
-          <IconImage source={progress === idx ? dotFilled : dot} />
+          <IconImage key={idx} source={progress === idx ? dotFilled : dot} />
         ))}
         {progress !== 3 && <RightArrow pressEvent={mr} />}
       </SliderHandler>

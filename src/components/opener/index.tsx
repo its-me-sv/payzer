@@ -3,7 +3,6 @@ import {ImageSourcePropType} from 'react-native';
 import {connect} from 'react-redux';
 
 import {
-  ContainerView,
   BackgroundImageContainer,
   HeaderText,
   FooterText,
@@ -29,17 +28,11 @@ const Opener: React.FC<Props> = ({variant}) => {
   };
 
   return (
-    <ContainerView>
-      <BackgroundImageContainer source={backgroundImage}>
-        <HeaderText isPurple={variant === 1}>
-          {currentVariant.header}
-        </HeaderText>
-        <ClayImage source={iconImage} dim={dimensions} last={variant === 3} />
-        <FooterText isPurple={variant === 1}>
-          {currentVariant.footer}
-        </FooterText>
-      </BackgroundImageContainer>
-    </ContainerView>
+    <BackgroundImageContainer source={backgroundImage}>
+      <HeaderText isPurple={variant === 1}>{currentVariant.header}</HeaderText>
+      <ClayImage source={iconImage} dim={dimensions} last={variant === 3} />
+      <FooterText isPurple={variant === 1}>{currentVariant.footer}</FooterText>
+    </BackgroundImageContainer>
   );
 };
 
