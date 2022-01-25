@@ -1,5 +1,6 @@
 import React from 'react';
 import {ImageSourcePropType} from 'react-native';
+import {connect} from 'react-redux';
 
 import {
   ContainerView,
@@ -9,6 +10,7 @@ import {
   ClayImage,
 } from './styles';
 import variants, {Variant} from './data';
+import {AppState} from '../../redux/types';
 
 interface Props {
   variant: number;
@@ -41,4 +43,8 @@ const Opener: React.FC<Props> = ({variant}) => {
   );
 };
 
-export default Opener;
+const mapStateToProps = (state: AppState) => ({
+  variant: state.slider.progress,
+});
+
+export default connect(mapStateToProps)(Opener);

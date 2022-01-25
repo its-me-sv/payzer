@@ -1,9 +1,5 @@
 import styled from 'styled-components/native';
 
-export const SliderContainer = styled.View`
-  flex: 1;
-`;
-
 export const SliderHandler = styled.View`
   flex-direction: row;
   position: absolute;
@@ -16,7 +12,7 @@ export const SliderHandler = styled.View`
 export const IconImage = styled.Image`
   width: 16px;
   height: 16px;
-  opacity: 0.8;
+  opacity: 0.7;
   margin-right: 12px;
 `;
 

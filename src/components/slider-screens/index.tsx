@@ -1,38 +1,21 @@
 import React from 'react';
-import {ImageSourcePropType, Button} from 'react-native';
-
-import {
-  SliderContainer,
-  SliderHandler,
-  IconImage,
-  ButtonHolder,
-} from './styles';
+import styled from 'styled-components/native';
 
 import Opener from '../opener';
+import SlideHandler from '../slider-handler';
 
 interface props {}
 
-const leftArrow: ImageSourcePropType = require('../../../assets/icons/left-arrow.png');
-const rightArrow: ImageSourcePropType = require('../../../assets/icons/right-arrow.png');
-
-const dot: ImageSourcePropType = require('../../../assets/icons/dot.png');
-const dotFilled: ImageSourcePropType = require('../../../assets/icons/dot-filled.png');
+const SliderContainer = styled.View`
+  flex: 1;
+`;
 
 const SliderScreen: React.FC<props> = () => {
+  console.log('rendered');
   return (
     <SliderContainer>
-      <Opener variant={3} />
-      <SliderHandler>
-        <IconImage source={leftArrow} />
-        <IconImage source={dotFilled} />
-        <IconImage source={dot} />
-        <IconImage source={dot} />
-        <IconImage source={dot} />
-        <IconImage source={rightArrow} />
-      </SliderHandler>
-      <ButtonHolder>
-        <Button title="Get started" color="#696262" />
-      </ButtonHolder>
+      <Opener />
+      <SlideHandler />
     </SliderContainer>
   );
 };
