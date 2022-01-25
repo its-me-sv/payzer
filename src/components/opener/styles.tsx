@@ -50,6 +50,7 @@ export const FooterText = styled.Text`
     color: #453b3c;
     text-align: center;
     opacity: 0.7;
+    margin-bottom: 5%;
     ${({isPurple}: {isPurple: boolean}) => isPurple === true && `
         color: #efefef;
         opacity: 0.8;
