@@ -1,11 +1,10 @@
-/* eslint-disable prettier/prettier */
 import {combineReducers} from 'redux';
 
 import SliderReducer from './slider/slider.reducer';
 import {AppState} from './types';
 
 const rootReducer = combineReducers<AppState>({
-    slider: SliderReducer,
+  slider: SliderReducer,
 });
 
 export default rootReducer;

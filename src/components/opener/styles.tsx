@@ -17,22 +17,27 @@ export const HeaderText = styled.Text`
     font-family: calibri;
     font-size: 84px;
     color: #272424;
-    ${({isPurple}) => isPurple === true && `
+    ${({isPurple}: {isPurple: boolean}) => isPurple === true && `
         color: #efefef;
         opacity: 0.8;
     `}
 `;
 
+interface ClayImageProps {
+    dim?: any,
+    last?: boolean
+}
+
 export const ClayImage = styled.Image`
     margin-top: 10%;
     margin-bottom: 12%;
     resize-mode: stretch;
-    ${({dim}: {dim: {[key:string]: string}}) => `
+    ${({dim}: ClayImageProps) => `
         width: ${dim.width};
         height: ${dim.height};
         margin-left: ${dim.ml};
     `}
-    ${({last}) => last === true && `
+    ${({last}: ClayImageProps) => last === true && `
         margin-top: 2%;
         margin-bottom: 7%;
     `}
