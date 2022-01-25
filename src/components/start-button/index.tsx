@@ -6,7 +6,7 @@ const ButtonHolder = styled.View`
   position: absolute;
   bottom: 0;
   right: 0;
-  margin-bottom: 1%;
+  margin-bottom: 2%;
   margin-right: 4%;
   elevation: 21;
 `;
