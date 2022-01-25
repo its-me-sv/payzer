@@ -16,8 +16,8 @@ const variants: Variant[] = [
     clay: require('../../../assets/clays/puzzle-dynamic-color.png'),
     header: 'Simple',
     footer: 'Send and receive money just by simple taps.',
-    width: '280px',
-    height: '280px',
+    width: '300px',
+    height: '282px',
     ml: '12%',
   },
   {
@@ -25,8 +25,8 @@ const variants: Variant[] = [
     clay: require('../../../assets/clays/sheild-dynamic-premium.png'),
     header: 'Secure',
     footer: 'Out of the box security for each transaction.',
-    width: '220px',
-    height: '240px',
+    width: '280px',
+    height: '320px',
     ml: '4%',
   },
   {
@@ -44,7 +44,7 @@ const variants: Variant[] = [
     header: 'Diverse',
     footer: 'Add upto three cards per mobile number.',
     width: '300px',
-    height: '300px',
+    height: '338px',
     ml: '4%',
   },
 ];
