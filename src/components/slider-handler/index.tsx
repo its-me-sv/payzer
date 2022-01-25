@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import {ImageSourcePropType} from 'react-native';
 import {connect} from 'react-redux';
 
