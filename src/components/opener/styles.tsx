@@ -10,13 +10,14 @@ export const BackgroundImageContainer = styled.ImageBackground.attrs({
 })`
     flex: 1;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 `;
 
 export const HeaderText = styled.Text`
     font-family: calibri;
-    font-size: 84px;
+    font-size: 77px;
     color: #272424;
+    opacity: 0.8;
     ${({isPurple}: {isPurple: boolean}) => isPurple === true && `
         color: #efefef;
         opacity: 0.8;
@@ -29,8 +30,8 @@ interface ClayImageProps {
 }
 
 export const ClayImage = styled.Image`
-    margin-top: 10%;
-    margin-bottom: 12%;
+    /* margin-top: 10%;
+    margin-bottom: 12%; */
     resize-mode: stretch;
     ${({dim}: ClayImageProps) => `
         width: ${dim.width};
@@ -49,7 +50,6 @@ export const FooterText = styled.Text`
     color: #453b3c;
     text-align: center;
     opacity: 0.7;
-    elevation: 1;
     ${({isPurple}: {isPurple: boolean}) => isPurple === true && `
         color: #efefef;
         opacity: 0.8;

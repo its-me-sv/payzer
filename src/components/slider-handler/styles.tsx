@@ -4,23 +4,16 @@ export const SliderHandler = styled.View`
   flex-direction: row;
   position: absolute;
   bottom: 0;
-  align-self: center;
+  flex: 1;
   align-items: center;
-  margin-bottom: 14%;
+  justify-content: space-between;
+  margin-bottom: 3%;
+  margin-left: 3%;
 `;
 
 export const IconImage = styled.Image`
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   opacity: 0.7;
-  margin-right: 12px;
-`;
-
-export const ButtonHolder = styled.View`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-bottom: 2%;
-  margin-right: 4%;
-  elevation: 21;
+  /* margin-right: 7px; */
 `;

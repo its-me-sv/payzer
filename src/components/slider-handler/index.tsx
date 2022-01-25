@@ -1,14 +1,14 @@
 import React from 'react';
-import {TouchableOpacity, ImageSourcePropType, Button} from 'react-native';
+import styled from 'styled-components/native';
+import {ImageSourcePropType} from 'react-native';
 import {connect} from 'react-redux';
 
-import {SliderHandler, IconImage, ButtonHolder} from './styles';
+import {SliderHandler, IconImage} from './styles';
+import StartButton from '../start-button/index';
+import {LeftArrow, RightArrow} from '../slider-arrows';
 
 import {AppState} from '../../redux/types';
 import {moveLeft, moveRight} from '../../redux/slider/slider.actions';
-
-const leftArrow: ImageSourcePropType = require('../../../assets/icons/left-arrow.png');
-const rightArrow: ImageSourcePropType = require('../../../assets/icons/right-arrow.png');
 
 const dot: ImageSourcePropType = require('../../../assets/icons/dot.png');
 const dotFilled: ImageSourcePropType = require('../../../assets/icons/dot-filled.png');
@@ -23,26 +23,13 @@ const SlideHandler: React.FC<props> = ({ml, mr, progress}) => {
   return (
     <>
       <SliderHandler>
-        {progress !== 0 && (
-          <TouchableOpacity onPress={ml}>
-            <IconImage source={leftArrow} />
-          </TouchableOpacity>
-        )}
-        <IconImage source={dotFilled} />
-        <IconImage source={dot} />
-        <IconImage source={dot} />
-        <IconImage source={dot} />
-        {progress !== 3 && (
-          <TouchableOpacity onPress={mr}>
-            <IconImage source={rightArrow} />
-          </TouchableOpacity>
-        )}
+        {progress !== 0 && <LeftArrow pressEvent={ml} />}
+        {[...Array(4)].map((_, idx) => (
+          <IconImage source={progress === idx ? dotFilled : dot} />
+        ))}
+        {progress !== 3 && <RightArrow pressEvent={mr} />}
       </SliderHandler>
-      {progress === 3 && (
-        <ButtonHolder>
-          <Button title="Get started" color="#696262" />
-        </ButtonHolder>
-      )}
+      {progress === 3 && <StartButton />}
     </>
   );
 };

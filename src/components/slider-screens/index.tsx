@@ -11,7 +11,6 @@ const SliderContainer = styled.View`
 `;
 
 const SliderScreen: React.FC<props> = () => {
-  console.log('rendered');
   return (
     <SliderContainer>
       <Opener />
