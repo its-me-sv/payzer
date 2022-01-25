@@ -18,7 +18,7 @@ export const SliderHandler = styled.View`
 export const IconImage = styled.Image`
     width: 16px;
     height: 16px;
-    opacity: 0.6;
+    opacity: 0.8;
     margin-right: 12px;
 `;
 
