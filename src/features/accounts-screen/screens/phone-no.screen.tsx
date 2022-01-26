@@ -8,7 +8,6 @@ import {
   ClayPhone,
   Caption,
   PhoneNumberInput,
-  PushToEnd,
   Footer,
   FooterText,
 } from '../components/styles';
@@ -25,9 +24,7 @@ const PhoneNoScreen: React.FC<props> = () => {
           Please confirm your country code and enter your phone number
         </Caption>
         <PhoneNumberInput placeholder="Phone Number" />
-        <PushToEnd>
-          <Button title="Send Verification Code" />
-        </PushToEnd>
+        <Button title="Send Verification Code" />
       </MiddleContainer>
       <Footer>
         <FooterText>Terms and Conditions</FooterText>

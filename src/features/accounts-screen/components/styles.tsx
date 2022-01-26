@@ -48,10 +48,6 @@ export const PhoneNumberInput = styled.TextInput`
   margin-bottom: 14px;
 `;
 
-export const PushToEnd = styled.View`
-  align-self: flex-end;
-`;
-
 export const Footer = styled.View`
   align-items: center;
 `;
