@@ -27,8 +27,7 @@ const IconImage = styled.Image`
 `;
 
 const ArrowSpace = styled.View`
-  width: 18px;
-  height: 18px;
+  width: 25px;
 `;
 
 const dot: ImageSourcePropType = require('../../../../assets/icons/dot.png');

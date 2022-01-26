@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, ImageSourcePropType} from 'react-native';
+import {ImageSourcePropType} from 'react-native';
 import styled from 'styled-components/native';
 
 interface props {
@@ -13,14 +13,18 @@ const IconImage = styled.Image`
   opacity: 0.7;
 `;
 
+const TouchStyle = styled.TouchableOpacity`
+  padding: 7px;
+`;
+
 const leftArrow: ImageSourcePropType = require('../../../../assets/icons/left-arrow.png');
 const rightArrow: ImageSourcePropType = require('../../../../assets/icons/right-arrow.png');
 
 const SliderArrow: React.FC<props> = ({pressEvent, direction}) => {
   return (
-    <TouchableOpacity onPress={pressEvent}>
+    <TouchStyle onPress={pressEvent}>
       <IconImage source={direction === 'l' ? leftArrow : rightArrow} />
-    </TouchableOpacity>
+    </TouchStyle>
   );
 };
 
