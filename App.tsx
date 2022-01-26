@@ -3,7 +3,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 
-import SliderScreen from './src/features/first-install-screen/screens';
+import ConditionsScreen from './src/components/scroller';
 import store from './src/redux/store';
 
 const App: React.FC = () => {
@@ -14,7 +14,7 @@ const App: React.FC = () => {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <SliderScreen />
+        <ConditionsScreen />
       </Provider>
     </NavigationContainer>
   );
