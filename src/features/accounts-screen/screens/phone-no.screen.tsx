@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button} from 'react-native';
 
 import {
   Container,
@@ -7,10 +6,11 @@ import {
   MiddleContainer,
   ClayPhone,
   Caption,
-  PhoneNumberInput,
   Footer,
   FooterText,
 } from '../components/styles';
+
+import PhoneNumberInput from '../components/no-input.component';
 
 interface props {}
 
@@ -23,8 +23,7 @@ const PhoneNoScreen: React.FC<props> = () => {
         <Caption>
           Please confirm your country code and enter your phone number
         </Caption>
-        <PhoneNumberInput placeholder="Phone Number" />
-        <Button title="Send Verification Code" />
+        <PhoneNumberInput />
       </MiddleContainer>
       <Footer>
         <FooterText>Terms and Conditions</FooterText>
