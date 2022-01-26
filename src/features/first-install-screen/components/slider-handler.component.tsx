@@ -17,13 +17,18 @@ const SliderHandler = styled.View`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 3%;
-  margin-left: 3%;
+  margin-left: 2%;
 `;
 
 const IconImage = styled.Image`
   width: 12px;
   height: 12px;
   opacity: 0.7;
+`;
+
+const ArrowSpace = styled.View`
+  width: 18px;
+  height: 18px;
 `;
 
 const dot: ImageSourcePropType = require('../../../../assets/icons/dot.png');
@@ -39,7 +44,11 @@ const SlideHandler: React.FC<props> = ({ml, mr, progress}) => {
   return (
     <>
       <SliderHandler>
-        {progress !== 0 && <SliderArrow pressEvent={ml} direction="l" />}
+        {progress !== 0 ? (
+          <SliderArrow pressEvent={ml} direction="l" />
+        ) : (
+          <ArrowSpace />
+        )}
         {[...Array(4)].map((_, idx) => (
           <IconImage key={idx} source={progress === idx ? dotFilled : dot} />
         ))}
