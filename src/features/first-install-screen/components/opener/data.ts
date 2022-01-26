@@ -12,8 +12,8 @@ export interface Variant {
 
 const variants: Variant[] = [
   {
-    background: require('../../../assets/gradients/grad2.png'),
-    clay: require('../../../assets/clays/puzzle-dynamic-color.png'),
+    background: require('../../../../../assets/gradients/grad2.png'),
+    clay: require('../../../../../assets/clays/puzzle-dynamic-color.png'),
     header: 'Simple',
     footer: 'Send and receive money just by simple taps.',
     width: '300px',
@@ -21,8 +21,8 @@ const variants: Variant[] = [
     ml: '12%',
   },
   {
-    background: require('../../../assets/gradients/grad3.png'),
-    clay: require('../../../assets/clays/sheild-dynamic-premium.png'),
+    background: require('../../../../../assets/gradients/grad3.png'),
+    clay: require('../../../../../assets/clays/sheild-dynamic-premium.png'),
     header: 'Secure',
     footer: 'Out of the box security for each transaction.',
     width: '280px',
@@ -30,8 +30,8 @@ const variants: Variant[] = [
     ml: '4%',
   },
   {
-    background: require('../../../assets/gradients/grad4.png'),
-    clay: require('../../../assets/clays/flash-dynamic-color.png'),
+    background: require('../../../../../assets/gradients/grad4.png'),
+    clay: require('../../../../../assets/clays/flash-dynamic-color.png'),
     header: 'Fast',
     footer: 'Super fast transactions under 3 seconds.',
     width: '280px',
@@ -39,8 +39,8 @@ const variants: Variant[] = [
     ml: '12%',
   },
   {
-    background: require('../../../assets/gradients/grad5.png'),
-    clay: require('../../../assets/clays/card-combined.png'),
+    background: require('../../../../../assets/gradients/grad5.png'),
+    clay: require('../../../../../assets/clays/card-combined.png'),
     header: 'Diverse',
     footer: 'Add upto three cards per mobile number.',
     width: '300px',

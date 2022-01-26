@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import Opener from '../opener';
-import SlideHandler from '../slider-handler';
+import Opener from '../components/opener';
+import SlideHandler from '../components/slider-handler.component';
 
 interface props {}
 
