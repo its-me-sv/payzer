@@ -8,7 +8,7 @@ import store from './src/redux/store';
 
 const App: React.FC = () => {
   useEffect(() => {
-    setTimeout(() => SplashScreen.hide(), 2000);
+    SplashScreen.hide();
   }, []);
 
   return (
