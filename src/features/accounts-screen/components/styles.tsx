@@ -48,7 +48,7 @@ export const PhoneNumberInput = styled.TextInput`
   margin-bottom: 14px;
 `;
 
-export const Footer = styled.View`
+export const Footer = styled.Pressable`
   align-items: center;
 `;
 

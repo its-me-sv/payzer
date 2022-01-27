@@ -19,16 +19,21 @@ const InfoContainer = styled.View`
 const Title = styled.Text`
   font-family: Gadamer;
   font-size: 84px;
+  color: #2d292a;
 `;
 
 const SubTitle = styled.Text`
   font-family: calibri;
   font-size: 24px;
+  color: black;
+  opacity: 0.8;
 `;
 
 const Article = styled.Text`
   font-family: bahnschrift;
   font-size: 16px;
+  color: black;
+  opacity: 0.6;
 `;
 
 interface props {}

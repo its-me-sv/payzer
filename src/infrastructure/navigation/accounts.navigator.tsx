@@ -5,13 +5,14 @@ import {
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 
+import {AccountParamList} from './accounts.types';
 import PhoneNoScreen from '../../features/accounts-screen/screens/phone-no.screen';
 import ConditionsScreen from '../../components/scroller';
 
 const OTPScreen = () => <Text>OTP Screen</Text>;
 const CreateScreen = () => <Text>OTP Screen</Text>;
 
-const AccountsStack = createNativeStackNavigator();
+const AccountsStack = createNativeStackNavigator<AccountParamList>();
 
 const screenOptions: NativeStackNavigationOptions = {
   headerShown: false,
@@ -23,11 +24,19 @@ const AccountsNavigator: React.FC<props> = () => {
   return (
     <AccountsStack.Navigator
       screenOptions={screenOptions}
-      initialRouteName="phone-number">
-      <AccountsStack.Screen name="phone-number" component={PhoneNoScreen} />
+      initialRouteName="Phone Number">
+      <AccountsStack.Screen name="Phone Number" component={PhoneNoScreen} />
       <AccountsStack.Screen name="otp" component={OTPScreen} />
       <AccountsStack.Screen name="create" component={CreateScreen} />
-      <AccountsStack.Screen name="conditions" component={ConditionsScreen} />
+      <AccountsStack.Screen
+        options={{
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerBackTitleVisible: false,
+        }}
+        name="Conditions"
+        component={ConditionsScreen}
+      />
     </AccountsStack.Navigator>
   );
 };

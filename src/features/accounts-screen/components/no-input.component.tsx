@@ -8,11 +8,10 @@ const CustomisedPhoneNoInput = styled(PhoneInput).attrs({
     borderRadius: 10,
     paddingHorizontal: 0,
     paddingVertical: 0,
-    elevation: 42,
   },
   containerStyle: {
     borderRadius: 10,
-    elevation: 42,
+    elevation: 7,
     borderWidth: 1,
     borderColor: '#b3b0b0',
     width: '100%',
