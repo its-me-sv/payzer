@@ -1,5 +1,7 @@
 import React, {useCallback} from 'react';
 
+import {useThemeContext} from '../../../context/theme.context';
+
 import {
   Container,
   Title,
@@ -16,22 +18,23 @@ import PhoneNumberInput from '../components/no-input.component';
 interface props extends AccountNavProps<'Phone Number'> {}
 
 const PhoneNoScreen: React.FC<props> = ({navigation}) => {
+  const {dark} = useThemeContext();
   const onFooterPress = useCallback(() => {
     navigation.navigate('Conditions');
   }, [navigation]);
   return (
-    <Container>
-      <Title>Payzer</Title>
+    <Container dark={dark}>
+      <Title dark={dark}>Payzer</Title>
       <MiddleContainer>
         <ClayPhone />
-        <Caption>
+        <Caption dark={dark}>
           Please confirm your country code and enter your phone number
         </Caption>
         <PhoneNumberInput />
       </MiddleContainer>
       <Footer onPress={onFooterPress}>
-        <FooterText>Terms and Conditions</FooterText>
-        <FooterText>Privacy Policy</FooterText>
+        <FooterText dark={dark}>Terms and Conditions</FooterText>
+        <FooterText dark={dark}>Privacy Policy</FooterText>
       </Footer>
     </Container>
   );

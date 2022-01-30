@@ -1,17 +1,25 @@
 import styled from 'styled-components/native';
 
+export interface Theme {
+  dark: boolean;
+}
+
 export const Container = styled.ScrollView.attrs({
   contentContainerStyle: {
     flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-})``;
+})<Theme>`
+  background-color: #e5e1e2;
+  ${({dark}) => dark && 'background-color: #222021;'}
+`;
 
-export const Title = styled.Text`
+export const Title = styled.Text<Theme>`
   font-family: Gadamer;
   font-size: 66px;
   color: #2d292a;
+  ${({dark}) => dark && 'color: #e5e1e2;'}
 `;
 
 export const MiddleContainer = styled.View`
@@ -29,7 +37,7 @@ export const ClayPhone = styled.Image.attrs({
   height: 200px;
 `;
 
-export const Caption = styled.Text`
+export const Caption = styled.Text<Theme>`
   font-family: bahnschrift;
   text-align: center;
   font-size: 18px;
@@ -37,9 +45,10 @@ export const Caption = styled.Text`
   margin-bottom: 10px;
   color: #2d292a;
   opacity: 0.7;
+  ${({dark}) => dark && 'color: #e5e1e2;'}
 `;
 
-export const PhoneNumberInput = styled.TextInput`
+export const PhoneNumberInput = styled.TextInput<Theme>`
   border-width: 1px;
   width: 140px;
   padding: 7px;
@@ -52,8 +61,9 @@ export const Footer = styled.Pressable`
   align-items: center;
 `;
 
-export const FooterText = styled.Text`
+export const FooterText = styled.Text<Theme>`
   font-size: 14px;
   color: #2d292a;
   opacity: 0.8;
+  ${({dark}) => dark && 'color: #e5e1e2;'}
 `;
