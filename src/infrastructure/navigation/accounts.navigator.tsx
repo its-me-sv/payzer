@@ -16,15 +16,13 @@ const CreateScreen = () => <Text>OTP Screen</Text>;
 
 const AccountsStack = createNativeStackNavigator<AccountParamList>();
 
-const getScreenOptions = (dark: boolean): NativeStackNavigationOptions => {
-  return {
-    headerShown: false,
-    headerTintColor: dark ? '#e5e1e2' : '#222021',
-    headerStyle: {
-      backgroundColor: !dark ? '#e5e1e2' : '#222021',
-    },
-  };
-};
+const getScreenOptions = (dark: boolean): NativeStackNavigationOptions => ({
+  headerShown: false,
+  headerTintColor: dark ? '#e5e1e2' : '#222021',
+  headerStyle: {
+    backgroundColor: !dark ? '#e5e1e2' : '#222021',
+  },
+});
 
 interface props {}
 
