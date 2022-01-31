@@ -30,8 +30,8 @@ const AccountsNavigator: React.FC<props> = () => {
   const {dark} = useThemeContext();
   return (
     <AccountsStack.Navigator screenOptions={() => getScreenOptions(dark)}>
-      <AccountsStack.Screen name="otp" component={OTPScreen} />
       <AccountsStack.Screen name="Phone Number" component={PhoneNoScreen} />
+      <AccountsStack.Screen name="otp" component={OTPScreen} />
       <AccountsStack.Screen name="create" component={CreateScreen} />
       <AccountsStack.Screen
         options={{
