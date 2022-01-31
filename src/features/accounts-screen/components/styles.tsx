@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
+import {Dimensions} from 'react-native';
 
+const screenWidth: number = Dimensions.get('window').width;
 export interface Theme {
   dark: boolean;
 }
@@ -37,6 +39,13 @@ export const ClayPhone = styled.Image.attrs({
   height: 200px;
 `;
 
+export const ClayLocker = styled.Image.attrs({
+  source: require('../../../../assets/clays/locker.png'),
+})`
+  width: 162px;
+  height: 148px;
+`;
+
 export const Caption = styled.Text<Theme>`
   font-family: bahnschrift;
   text-align: center;
@@ -66,4 +75,20 @@ export const FooterText = styled.Text<Theme>`
   color: #2d292a;
   opacity: 0.8;
   ${({dark}) => dark && 'color: #e5e1e2;'}
+`;
+
+export const StyledTextInput = styled.TextInput<Theme>`
+  border-width: 0.7px;
+  width: ${screenWidth - 84}px;
+  border-radius: 10px;
+  font-size: 18px;
+  border-color: #2d292a;
+  ${({dark}) => dark && 'border-color: #e5e1e2;'}
+  text-align: center;
+`;
+
+export const RowView = styled.View`
+  margin-top: 10px;
+  flex-direction: row;
+  justify-content: space-between;
 `;
