@@ -7,23 +7,32 @@ import {
 
 import {AccountParamList} from './accounts.types';
 import PhoneNoScreen from '../../features/accounts-screen/screens/phone-no.screen';
-import ConditionsScreen from '../../components/scroller';
+import ConditionsScreen from '../../components/conditions';
+
+import {useThemeContext} from '../../context/theme.context';
 
 const OTPScreen = () => <Text>OTP Screen</Text>;
 const CreateScreen = () => <Text>OTP Screen</Text>;
 
 const AccountsStack = createNativeStackNavigator<AccountParamList>();
 
-const screenOptions: NativeStackNavigationOptions = {
-  headerShown: false,
+const getScreenOptions = (dark: boolean): NativeStackNavigationOptions => {
+  return {
+    headerShown: false,
+    headerTintColor: dark ? '#e5e1e2' : '#222021',
+    headerStyle: {
+      backgroundColor: !dark ? '#e5e1e2' : '#222021',
+    },
+  };
 };
 
 interface props {}
 
 const AccountsNavigator: React.FC<props> = () => {
+  const {dark} = useThemeContext();
   return (
     <AccountsStack.Navigator
-      screenOptions={screenOptions}
+      screenOptions={() => getScreenOptions(dark)}
       initialRouteName="Phone Number">
       <AccountsStack.Screen name="Phone Number" component={PhoneNoScreen} />
       <AccountsStack.Screen name="otp" component={OTPScreen} />
