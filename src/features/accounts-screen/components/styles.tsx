@@ -79,7 +79,7 @@ export const FooterText = styled.Text<Theme>`
 
 export const StyledTextInput = styled.TextInput<Theme>`
   border-width: 0.7px;
-  width: ${screenWidth - 84}px;
+  width: ${screenWidth - 42}px;
   border-radius: 10px;
   font-size: 18px;
   border-color: #2d292a;
@@ -87,8 +87,15 @@ export const StyledTextInput = styled.TextInput<Theme>`
   text-align: center;
 `;
 
-export const RowView = styled.View`
+export const ButtonsContainer = styled.View`
   margin-top: 10px;
   flex-direction: row;
   justify-content: space-between;
+`;
+
+export const TimeContainer = styled.View`
+  flex-direction: row;
+  align-self: flex-end;
+  margin-top: 7px;
+  opacity: 0.7;
 `;

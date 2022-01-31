@@ -23,6 +23,7 @@ const OTPScreen: React.FC<props> = ({userPhoneNo, navigation}) => {
   const onFooterPress = useCallback(() => {
     navigation.navigate('Conditions');
   }, [navigation]);
+
   return (
     <Container dark={dark}>
       <Title dark={dark}>Payzer</Title>

@@ -1,8 +1,14 @@
 import React, {useState} from 'react';
 import {View, Button} from 'react-native';
 
-import {StyledTextInput, RowView} from './styles';
+import {
+  StyledTextInput,
+  ButtonsContainer,
+  FooterText,
+  TimeContainer,
+} from './styles';
 import {useThemeContext} from '../../../context/theme.context';
+import TimerComponent from './timer.component';
 
 interface props {}
 
@@ -15,6 +21,7 @@ const OTPInput: React.FC<props> = () => {
   const onVerify = () => {
     console.log('verify call');
   };
+
   return (
     <View>
       <StyledTextInput
@@ -25,14 +32,18 @@ const OTPInput: React.FC<props> = () => {
         keyboardType="number-pad"
         onSubmitEditing={() => otp.length === 10 && onVerify()}
       />
-      <RowView>
+      <TimeContainer>
+        <FooterText dark={dark}>Expires in </FooterText>
+        <TimerComponent />
+      </TimeContainer>
+      <ButtonsContainer>
         <Button onPress={onCancel} title="Cancel" color="#b73737" />
         <Button
           onPress={onVerify}
           title="Verify"
           disabled={otp.length !== 10}
         />
-      </RowView>
+      </ButtonsContainer>
     </View>
   );
 };
