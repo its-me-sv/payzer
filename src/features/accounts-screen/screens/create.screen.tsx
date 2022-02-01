@@ -23,7 +23,6 @@ const CreateScreen: React.FC<props> = ({navigation}) => {
   const onFooterPress = useCallback(() => {
     navigation.navigate('Conditions');
   }, [navigation]);
-  console.log('parent');
   return (
     <Container dark={dark}>
       <HeaderContainer>

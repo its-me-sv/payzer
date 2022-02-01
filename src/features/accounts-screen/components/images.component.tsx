@@ -1,5 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {ImageSourcePropType} from 'react-native';
+import {
+  launchImageLibrary,
+  launchCamera,
+  ImageLibraryOptions,
+} from 'react-native-image-picker';
 import styled from 'styled-components/native';
 
 import {TopMiddleContainer, IconImage, ProfileImage} from './styles';
@@ -15,18 +20,46 @@ interface props {
 
 const Touchable = styled.TouchableOpacity``;
 
+const imageOptions: ImageLibraryOptions = {
+  mediaType: 'photo',
+  quality: 0.7,
+};
+
 const Images: React.FC<props> = ({userPhoneNo}) => {
   const {dark} = useThemeContext();
-  const [avatarUrl, setAvatarUrl] = useState<string>(
+  const [usrImg, setUsrImg] = useState<string | undefined>(
     `${DiceBear}${userPhoneNo}.png`,
   );
+
+  const openGallery = useCallback(async () => {
+    try {
+      const result = await launchImageLibrary(imageOptions);
+      if (result?.assets) {
+        setUsrImg(result.assets[0].uri);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }, [setUsrImg]);
+
+  const openCamera = useCallback(async () => {
+    try {
+      const result = await launchCamera(imageOptions);
+      if (result?.assets) {
+        setUsrImg(result.assets[0].uri);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }, [setUsrImg]);
+
   return (
     <TopMiddleContainer>
-      <Touchable onPress={() => console.log('camera press')}>
+      <Touchable onPress={openCamera}>
         <IconImage source={CameraIcon} dark={dark} />
       </Touchable>
-      <ProfileImage source={{uri: avatarUrl}} dark={dark} />
-      <Touchable onPress={() => console.log('edit press')}>
+      <ProfileImage source={{uri: usrImg}} dark={dark} />
+      <Touchable onPress={openGallery}>
         <IconImage source={EditIcon} dark={dark} />
       </Touchable>
     </TopMiddleContainer>
