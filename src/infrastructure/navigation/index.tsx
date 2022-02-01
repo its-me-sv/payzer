@@ -1,16 +1,26 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
+import {connect} from 'react-redux';
 
 import AccountsNavigator from './accounts.navigator';
+import AppNavigator from './app.navigator';
 
-interface props {}
+import {AppState} from '../../redux/types';
 
-const RootNavigator: React.FC<props> = () => {
+interface props {
+  loggedOut: boolean;
+}
+
+const RootNavigator: React.FC<props> = ({loggedOut}) => {
   return (
     <NavigationContainer>
-      <AccountsNavigator />
+      {!loggedOut ? <AppNavigator /> : <AccountsNavigator />}
     </NavigationContainer>
   );
 };
 
-export default RootNavigator;
+const mapStateToProps = (state: AppState) => ({
+  loggedOut: state.user.user == null,
+});
+
+export default connect(mapStateToProps)(RootNavigator);

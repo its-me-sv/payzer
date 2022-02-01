@@ -6,6 +6,7 @@ export type AccountParamList = {
   otp: undefined;
   create: undefined;
   Conditions: undefined;
+  features: undefined;
 };
 
 export type AccountNavProps<T extends keyof AccountParamList> = {

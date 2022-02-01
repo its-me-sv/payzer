@@ -26,7 +26,11 @@ const NameInput: React.FC<props> = () => {
       />
       <ButtonsContainer>
         <Button title="Cancel" color="#b73737" onPress={onCancel} />
-        <Button title="Create Account" onPress={onCreate} />
+        <Button
+          title="Create Account"
+          onPress={onCreate}
+          disabled={name.length < 3}
+        />
       </ButtonsContainer>
     </View>
   );

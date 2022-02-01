@@ -11,3 +11,9 @@ export const moveLeft = () =>
   <AppAction>{
     type: sliderTypes.MOVE_LEFT,
   };
+
+export const setStarted = (val: boolean) =>
+  <AppAction>{
+    type: sliderTypes.SET_STARTED,
+    payload: val,
+  };

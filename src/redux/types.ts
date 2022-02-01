@@ -7,10 +7,30 @@ export interface AppAction extends Action {
 
 export interface SliderState {
   progress: number;
+  started: boolean;
+}
+
+export interface PayzerUser {
+  id?: string;
+  phoneNo?: string;
+  country?: string;
+  name?: string;
+  profilePicture?: string;
+  credit?: number;
+  debit?: number;
+  cardCount?: number;
+  createdAt?: string;
+}
+
+export interface UserState {
+  pending: boolean;
+  error: null | Error;
+  user: null | PayzerUser;
 }
 
 export interface AppState {
   slider: SliderState;
+  user: UserState;
 }
 
 export interface ExtraDispatchArgs {}

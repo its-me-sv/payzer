@@ -6,6 +6,7 @@ import {SliderState, AppAction} from '../types';
 
 const initialState: SliderState = {
   progress: 0,
+  started: false,
 };
 
 const SliderReducer: Reducer<SliderState, AppAction> = (
@@ -17,6 +18,8 @@ const SliderReducer: Reducer<SliderState, AppAction> = (
       return {...state, progress: state.progress - 1};
     case sliderTypes.MOVE_RIGHT:
       return {...state, progress: state.progress + 1};
+    case sliderTypes.SET_STARTED:
+      return {...state, started: action.payload};
     default:
       return state;
   }
