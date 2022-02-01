@@ -29,6 +29,7 @@ const ScreenOptionsForConditions: NativeStackNavigationOptions = {
   headerShown: true,
   headerTitleAlign: 'center',
   headerBackTitleVisible: false,
+  animation: 'slide_from_bottom',
 };
 
 interface props {
@@ -40,11 +41,27 @@ const AccountsNavigator: React.FC<props> = ({firstTime}) => {
   return (
     <AccountsStack.Navigator screenOptions={() => getScreenOptions(dark)}>
       {firstTime && (
-        <AccountsStack.Screen name="features" component={SliderScreen} />
+        <AccountsStack.Screen
+          options={{animation: 'fade'}}
+          name="features"
+          component={SliderScreen}
+        />
       )}
-      <AccountsStack.Screen name="Phone Number" component={PhoneNoScreen} />
-      <AccountsStack.Screen name="otp" component={OTPScreen} />
-      <AccountsStack.Screen name="create" component={CreateScreen} />
+      <AccountsStack.Screen
+        options={{animation: 'slide_from_right'}}
+        name="Phone Number"
+        component={PhoneNoScreen}
+      />
+      <AccountsStack.Screen
+        options={{animation: 'slide_from_right'}}
+        name="otp"
+        component={OTPScreen}
+      />
+      <AccountsStack.Screen
+        options={{animation: 'slide_from_right'}}
+        name="create"
+        component={CreateScreen}
+      />
       <AccountsStack.Screen
         options={ScreenOptionsForConditions}
         name="Conditions"
