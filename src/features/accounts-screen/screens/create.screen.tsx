@@ -18,8 +18,9 @@ import NameInput from '../components/name-input.component';
 
 interface props extends AccountNavProps<'create'> {}
 
-const CreateScreen: React.FC<props> = ({navigation}) => {
+const CreateScreen: React.FC<props> = ({navigation, route}) => {
   const {dark} = useThemeContext();
+  const {phoneNo, country} = route.params;
   const onFooterPress = useCallback(() => {
     navigation.navigate('Conditions');
   }, [navigation]);
@@ -30,7 +31,7 @@ const CreateScreen: React.FC<props> = ({navigation}) => {
         <CreateTitle dark={dark}>Create Account</CreateTitle>
       </HeaderContainer>
       <MiddleContainer>
-        <Images />
+        <Images userPhoneNo={phoneNo} />
         <NameInput />
       </MiddleContainer>
       <Footer onPress={onFooterPress}>

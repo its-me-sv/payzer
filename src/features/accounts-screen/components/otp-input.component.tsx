@@ -10,17 +10,14 @@ import {
 import {useThemeContext} from '../../../context/theme.context';
 import TimerComponent from './timer.component';
 
-interface props {}
+interface props {
+  cancel: () => void;
+  verify: (otp: string) => void;
+}
 
-const OTPInput: React.FC<props> = () => {
+const OTPInput: React.FC<props> = ({cancel, verify}) => {
   const {dark} = useThemeContext();
   const [otp, setOtp] = useState<string>('');
-  const onCancel = () => {
-    console.log('cancel call');
-  };
-  const onVerify = () => {
-    console.log('verify call');
-  };
 
   return (
     <View>
@@ -30,16 +27,16 @@ const OTPInput: React.FC<props> = () => {
         value={otp}
         onChangeText={setOtp}
         keyboardType="number-pad"
-        onSubmitEditing={() => otp.length === 10 && onVerify()}
+        onSubmitEditing={() => otp.length === 10 && verify(otp)}
       />
       <TimeContainer>
         <FooterText dark={dark}>Expires in </FooterText>
-        <TimerComponent />
+        <TimerComponent onEnd={cancel} />
       </TimeContainer>
       <ButtonsContainer>
-        <Button onPress={onCancel} title="Cancel" color="#b73737" />
+        <Button onPress={cancel} title="Cancel" color="#b73737" />
         <Button
-          onPress={onVerify}
+          onPress={() => verify(otp)}
           title="Verify"
           disabled={otp.length !== 10}
         />

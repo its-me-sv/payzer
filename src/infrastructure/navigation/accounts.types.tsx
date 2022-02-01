@@ -3,8 +3,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export type AccountParamList = {
   'Phone Number': undefined;
-  otp: undefined;
-  create: undefined;
+  otp: {phoneNo: string; country: string};
+  create: {phoneNo: string; country: string};
   Conditions: undefined;
   features: undefined;
 };

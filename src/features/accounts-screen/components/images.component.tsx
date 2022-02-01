@@ -66,8 +66,4 @@ const Images: React.FC<props> = ({userPhoneNo}) => {
   );
 };
 
-Images.defaultProps = {
-  userPhoneNo: '+919790229904',
-};
-
 export default Images;

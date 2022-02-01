@@ -5,8 +5,11 @@ import PhoneInput, {
 } from 'react-native-phone-number-input';
 import styled from 'styled-components/native';
 import {Button} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
 
 import {useThemeContext} from '../../../context/theme.context';
+import {useAPIContext} from '../../../context/api.context';
 
 interface ThemedPhoneProps extends PhoneInputProps {
   dark: boolean;
@@ -67,17 +70,34 @@ const India: Country = {
   subregion: 'Southern Asia',
 };
 
-interface props {}
+interface props {
+  loadingSetter: (val: boolean) => void;
+}
 
-const PhoneNumberInput: React.FC<props> = () => {
+const PhoneNumberInput: React.FC<props> = ({loadingSetter}) => {
+  const {REST_API} = useAPIContext();
+  const navigation = useNavigation();
   const [country, setCountry] = useState<Country>(India);
   const [phoneNo, setPhoneNo] = useState<string>('');
 
   const {dark} = useThemeContext();
 
   const onSubmit = useCallback(() => {
-    console.log(country, phoneNo);
-  }, [country, phoneNo]);
+    loadingSetter(true);
+    axios
+      .post(`${REST_API}/auth/send-otp`, {phoneNo})
+      .then(() => {
+        loadingSetter(false);
+        navigation.navigate(
+          'otp' as never,
+          {phoneNo, country: `${country.name}/${country.currency[0]}`} as never,
+        );
+      })
+      .catch(err => {
+        loadingSetter(false);
+        console.log(err);
+      });
+  }, [REST_API, phoneNo, country, navigation, loadingSetter]);
 
   return (
     <>
