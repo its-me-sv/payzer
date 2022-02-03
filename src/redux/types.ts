@@ -20,6 +20,7 @@ export interface PayzerUser {
   debit?: number;
   cardCount?: number;
   createdAt?: string;
+  otp?: string;
 }
 
 export interface UserState {

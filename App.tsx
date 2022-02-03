@@ -3,6 +3,8 @@ import SplashScreen from 'react-native-splash-screen';
 import {Provider} from 'react-redux';
 
 import {ThemeContextProvider} from './src/context/theme.context';
+import {APIContextProvider} from './src/context/api.context';
+import {CreateAccContextProvider} from './src/context/create.context';
 import RootNavigator from './src/infrastructure/navigation';
 import store from './src/redux/store';
 
@@ -14,7 +16,11 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <ThemeContextProvider>
-        <RootNavigator />
+        <APIContextProvider>
+          <CreateAccContextProvider>
+            <RootNavigator />
+          </CreateAccContextProvider>
+        </APIContextProvider>
       </ThemeContextProvider>
     </Provider>
   );
