@@ -1,36 +1,14 @@
 import React, {useEffect} from 'react';
-import {Text, View, Button} from 'react-native';
 import {connect} from 'react-redux';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createNativeStackNavigator, NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import axios from 'axios';
 
-import {logoutUser} from '../../redux/user/user.actions';
 import {useTokenContext} from '../../context/token.context';
 import {useAPIContext} from '../../context/api.context';
 import {AppState, PayzerUser} from '../../redux/types';
 import {userSuccess} from '../../redux/user/user.actions';
 
-const mapDispatchToProps = (dispatch: Function) => ({
-  logout: (tkn: string) => dispatch(logoutUser(tkn)),
-});
-
-const DashBoard = connect(
-  null,
-  mapDispatchToProps,
-)(({logout}) => {
-  const {token} = useTokenContext();
-  return (
-    <View>
-      <Text>Dashboard Screen</Text>
-      <Button
-        title="logout"
-        onPress={() => {
-          logout(token.key);
-        }}
-      />
-    </View>
-  );
-});
+import Dashboard from '../../features/dashboard/screens/dashboard.screen';
 
 const AppStack = createNativeStackNavigator();
 
@@ -49,6 +27,10 @@ interface RefreshResponseData {
   jwt_token: string;
 }
 
+const screenOptions: NativeStackNavigationOptions = {
+  headerShown: false,
+};
+
 const AppNavigator: React.FC<props> = ({phoneNo, setUser}) => {
   const {token, setSession} = useTokenContext();
   const {REST_API} = useAPIContext();
@@ -64,7 +46,7 @@ const AppNavigator: React.FC<props> = ({phoneNo, setUser}) => {
         .catch(err => {
           console.log('here', err);
         });
-    } else if (Date.now() - token?.iat > 5000) {
+    } else if (Date.now() - token?.iat > 86400000) {
       axios
         .post(
           `${REST_API}/auth/refresh`,
@@ -83,8 +65,8 @@ const AppNavigator: React.FC<props> = ({phoneNo, setUser}) => {
     }
   }, []);
   return (
-    <AppStack.Navigator>
-      <AppStack.Screen name="dashboard" component={DashBoard} />
+    <AppStack.Navigator screenOptions={screenOptions}>
+      <AppStack.Screen name="dashboard" component={Dashboard} />
     </AppStack.Navigator>
   );
 };
