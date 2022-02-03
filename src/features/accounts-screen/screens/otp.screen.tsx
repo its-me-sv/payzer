@@ -1,11 +1,14 @@
 import React, {useCallback, useState} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 import {AccountNavProps} from '../../../infrastructure/navigation/accounts.types';
 import {useThemeContext} from '../../../context/theme.context';
 import OTPInput from '../components/otp-input.component';
 import BlockLoader from '../../../components/loader';
 import {useAPIContext} from '../../../context/api.context';
+import {PayzerUser} from '../../../redux/types';
+import {userSuccess} from '../../../redux/user/user.actions';
 
 import {
   Container,
@@ -17,9 +20,17 @@ import {
   FooterText,
 } from '../components/styles';
 
-interface props extends AccountNavProps<'otp'> {}
+interface props extends AccountNavProps<'otp'> {
+  setUser: (user: PayzerUser) => void;
+}
 
-const OTPScreen: React.FC<props> = ({navigation, route}) => {
+interface ResponseData {
+  newAccount: boolean;
+  user: PayzerUser;
+  token: string;
+}
+
+const OTPScreen: React.FC<props> = ({navigation, route, setUser}) => {
   const {dark} = useThemeContext();
   const {REST_API} = useAPIContext();
   const {phoneNo, country} = route.params;
@@ -40,15 +51,27 @@ const OTPScreen: React.FC<props> = ({navigation, route}) => {
       axios
         .post(`${REST_API}/auth/check-otp`, {otp, phoneNo})
         .then(() => {
-          setLoading(false);
-          navigation.replace('create', {phoneNo, country});
+          axios
+            .post(`${REST_API}/auth/verify`, {phoneNo})
+            .then(({data}: {data: ResponseData}) => {
+              setLoading(false);
+              if (data.newAccount) {
+                navigation.replace('create', {phoneNo, country});
+              } else {
+                setUser(data.user);
+              }
+            })
+            .catch(err => {
+              setLoading(false);
+              console.log(err);
+            });
         })
         .catch(err => {
           setLoading(false);
           console.log(err);
         });
     },
-    [setLoading, REST_API, phoneNo, country, navigation],
+    [setLoading, REST_API, phoneNo, country, navigation, setUser],
   );
 
   return (
@@ -72,4 +95,8 @@ const OTPScreen: React.FC<props> = ({navigation, route}) => {
   );
 };
 
-export default OTPScreen;
+const mapDispatchToProps = (dispatch: Function) => ({
+  setUser: (user: PayzerUser) => dispatch(userSuccess(user)),
+});
+
+export default connect(null, mapDispatchToProps)(OTPScreen);
