@@ -27,7 +27,7 @@ interface props extends AccountNavProps<'otp'> {
 interface ResponseData {
   newAccount: boolean;
   user: PayzerUser;
-  token: string;
+  jwt_token: string;
 }
 
 const OTPScreen: React.FC<props> = ({navigation, route, setUser}) => {

@@ -12,14 +12,14 @@ export interface SliderState {
 
 export interface PayzerUser {
   id?: string;
-  phoneNo?: string;
+  phone_no?: string;
   country?: string;
   name?: string;
-  profilePicture?: string;
+  profile_picture?: string;
   credit?: number;
   debit?: number;
-  cardCount?: number;
-  createdAt?: string;
+  card_count?: number;
+  created_at?: string;
   otp?: string;
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
@@ -34,10 +34,11 @@ const NameInput: React.FC<props> = ({loadingSetter, setUser}) => {
   const {SERVER, REST_API} = useAPIContext();
   const navigation = useNavigation();
 
-  const onCancel = () => {
+  const onCancel = useCallback(() => {
     navigation.replace('Phone Number');
-  };
-  const onCreate = () => {
+  }, [navigation]);
+
+  const onCreate = useCallback(() => {
     loadingSetter(true);
     const imageFormat: string = image.split('.').slice(-1)[0];
     const userImage = {
@@ -61,7 +62,6 @@ const NameInput: React.FC<props> = ({loadingSetter, setUser}) => {
           name,
           profilePicture: data.secure_url,
         };
-
         axios
           .post(`${REST_API}/users/create`, userToPost)
           .then(({data: data1}: {data: PayzerUser}) => {
@@ -77,7 +77,7 @@ const NameInput: React.FC<props> = ({loadingSetter, setUser}) => {
         loadingSetter(false);
         console.log(err);
       });
-  };
+  }, [REST_API, SERVER, country, image, loadingSetter, name, phoneNo, setUser]);
 
   return (
     <View>

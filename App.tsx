@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 import {ThemeContextProvider} from './src/context/theme.context';
 import {APIContextProvider} from './src/context/api.context';
 import {CreateAccContextProvider} from './src/context/create.context';
+import {TokenContextProvider} from './src/context/token.context';
 import RootNavigator from './src/infrastructure/navigation';
 import store from './src/redux/store';
 
@@ -18,7 +19,9 @@ const App: React.FC = () => {
       <ThemeContextProvider>
         <APIContextProvider>
           <CreateAccContextProvider>
-            <RootNavigator />
+            <TokenContextProvider>
+              <RootNavigator />
+            </TokenContextProvider>
           </CreateAccContextProvider>
         </APIContextProvider>
       </ThemeContextProvider>
