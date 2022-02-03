@@ -33,20 +33,13 @@ const ScreenOptionsForConditions: NativeStackNavigationOptions = {
 };
 
 interface props {
-  firstTime: boolean;
+  firstTime?: boolean;
 }
 
-const AccountsNavigator: React.FC<props> = ({firstTime}) => {
+const AccountsScreen: React.FC<props> = () => {
   const {dark} = useThemeContext();
   return (
     <AccountsStack.Navigator screenOptions={() => getScreenOptions(dark)}>
-      {firstTime && (
-        <AccountsStack.Screen
-          options={{animation: 'fade'}}
-          name="features"
-          component={SliderScreen}
-        />
-      )}
       <AccountsStack.Screen
         options={{animation: 'slide_from_right'}}
         name="Phone Number"
@@ -70,6 +63,9 @@ const AccountsNavigator: React.FC<props> = ({firstTime}) => {
     </AccountsStack.Navigator>
   );
 };
+
+const AccountsNavigator: React.FC<props> = ({firstTime}) =>
+  firstTime ? <SliderScreen /> : <AccountsScreen />;
 
 const mapStateToProps = (state: AppState) => ({
   firstTime: state.slider.started === false,

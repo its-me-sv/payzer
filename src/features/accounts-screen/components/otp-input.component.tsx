@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {View, Button} from 'react-native';
 
 import {
@@ -19,6 +19,10 @@ const OTPInput: React.FC<props> = ({cancel, verify}) => {
   const {dark} = useThemeContext();
   const [otp, setOtp] = useState<string>('');
 
+  const verifyOtp = useCallback(() => {
+    otp.length === 10 && verify(otp);
+  }, [otp, verify]);
+
   return (
     <View>
       <StyledTextInput
@@ -27,7 +31,7 @@ const OTPInput: React.FC<props> = ({cancel, verify}) => {
         value={otp}
         onChangeText={setOtp}
         keyboardType="number-pad"
-        onSubmitEditing={() => otp.length === 10 && verify(otp)}
+        onSubmitEditing={verifyOtp}
       />
       <TimeContainer>
         <FooterText dark={dark}>Expires in </FooterText>
@@ -36,7 +40,7 @@ const OTPInput: React.FC<props> = ({cancel, verify}) => {
       <ButtonsContainer>
         <Button onPress={cancel} title="Cancel" color="#b73737" />
         <Button
-          onPress={() => verify(otp)}
+          onPress={verifyOtp}
           title="Verify"
           disabled={otp.length !== 10}
         />

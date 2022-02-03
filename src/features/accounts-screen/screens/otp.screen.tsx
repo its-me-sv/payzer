@@ -31,7 +31,7 @@ const OTPScreen: React.FC<props> = ({navigation, route}) => {
 
   const onCancel = useCallback(() => {
     setLoading(false);
-    navigation.navigate('Phone Number');
+    navigation.replace('Phone Number');
   }, [setLoading, navigation]);
 
   const onVerify = useCallback(

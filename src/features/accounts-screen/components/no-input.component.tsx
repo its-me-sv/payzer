@@ -88,10 +88,11 @@ const PhoneNumberInput: React.FC<props> = ({loadingSetter}) => {
       .post(`${REST_API}/auth/send-otp`, {phoneNo})
       .then(() => {
         loadingSetter(false);
-        navigation.navigate(
-          'otp' as never,
-          {phoneNo, country: `${country.name}/${country.currency[0]}`} as never,
-        );
+        const params = {
+          phoneNo,
+          country: `${country.name}/${country.currency[0]}`,
+        };
+        navigation.replace('otp', params);
       })
       .catch(err => {
         loadingSetter(false);

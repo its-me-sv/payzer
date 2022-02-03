@@ -24,6 +24,7 @@ const PhoneNoScreen: React.FC<props> = ({navigation}) => {
   const onFooterPress = useCallback(() => {
     navigation.navigate('Conditions');
   }, [navigation]);
+
   return (
     <>
       {loading && <BlockLoader />}
