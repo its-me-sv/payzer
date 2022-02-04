@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {createNativeStackNavigator, NativeStackNavigationOptions} from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationOptions,
+} from '@react-navigation/native-stack';
 import axios from 'axios';
 
 import {useTokenContext} from '../../context/token.context';
@@ -35,35 +38,42 @@ const AppNavigator: React.FC<props> = ({phoneNo, setUser}) => {
   const {token, setSession} = useTokenContext();
   const {REST_API} = useAPIContext();
   useEffect(() => {
-    if (token?.key.length < 5) {
-      axios
-        .post(`${REST_API}/auth/verify`, {phoneNo})
-        .then(({data}: {data: VerifyResponseData}) => {
-          setSession(data.jwt_token);
-          setUser(data.user);
-          console.log('success');
-        })
-        .catch(err => {
-          console.log('here', err);
-        });
-    } else if (Date.now() - token?.iat > 86400000) {
-      axios
-        .post(
-          `${REST_API}/auth/refresh`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token.key}`,
+    const startupFunc = () => {
+      if (token?.key?.length < 5) {
+        axios
+          .post(`${REST_API}/auth/verify`, {phoneNo})
+          .then(({data}: {data: VerifyResponseData}) => {
+            setSession(data.jwt_token);
+            setUser(data.user);
+            console.log('set from app');
+          })
+          .catch(err => {
+            console.log(token);
+            console.log('here', err);
+          });
+      } else if (Date.now() - token?.iat > 86400000) {
+        axios
+          .post(
+            `${REST_API}/auth/refresh`,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${token.key}`,
+              },
             },
-          },
-        )
-        .then(({data}: {data: RefreshResponseData}) => {
-          setSession(data.jwt_token);
-          console.log('refreshed');
-        })
-        .catch(console.log);
-    }
-  }, []);
+          )
+          .then(({data}: {data: RefreshResponseData}) => {
+            setSession(data.jwt_token);
+            console.log('refreshed');
+          })
+          .catch(console.log);
+      } else {
+        console.log('good token');
+      }
+    };
+    console.log(token);
+    startupFunc();
+  }, [token, setSession]);
   return (
     <AppStack.Navigator screenOptions={screenOptions}>
       <AppStack.Screen name="dashboard" component={Dashboard} />

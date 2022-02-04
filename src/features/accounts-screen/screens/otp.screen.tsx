@@ -9,6 +9,7 @@ import BlockLoader from '../../../components/loader';
 import {useAPIContext} from '../../../context/api.context';
 import {PayzerUser} from '../../../redux/types';
 import {userSuccess} from '../../../redux/user/user.actions';
+import {useTokenContext} from '../../../context/token.context';
 
 import {
   Container,
@@ -34,6 +35,7 @@ const OTPScreen: React.FC<props> = ({navigation, route, setUser}) => {
   const {dark} = useThemeContext();
   const {REST_API} = useAPIContext();
   const {phoneNo, country} = route.params;
+  const {setSession} = useTokenContext();
   const [loading, setLoading] = useState<boolean>(false);
 
   const onFooterPress = useCallback(() => {
@@ -59,6 +61,7 @@ const OTPScreen: React.FC<props> = ({navigation, route, setUser}) => {
                 navigation.replace('create', {phoneNo, country});
               } else {
                 setUser(data.user);
+                setSession(data.jwt_token);
               }
             })
             .catch(err => {

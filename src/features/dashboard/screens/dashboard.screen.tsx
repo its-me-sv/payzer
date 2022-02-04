@@ -1,102 +1,48 @@
 import React from 'react';
-import {View, Text, Image, ImageBackground} from 'react-native';
-import styled from 'styled-components/native';
+import {View, TouchableOpacity} from 'react-native';
+import {connect} from 'react-redux';
 
-const DashboardContainer = styled.View`
-  flex: 1;
-  background-color: #222021;
-  justify-content: space-around;
-`;
+import {
+  DashboardContainer,
+  TitleBar,
+  TitleText,
+  Header,
+  ClayChart,
+  BodyContainer,
+  RowContainer,
+  ItemBackground,
+  RocketImage,
+  ItemText,
+  LogoutImage,
+  HeaderText,
+} from '../components/styles';
 
-const TitleBar = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3%;
-  padding-bottom: 0%;
-  padding-top: 0%;
-`;
+import {useThemeContext} from '../../../context/theme.context';
+import {useTokenContext} from '../../../context/token.context';
+import {logoutUser} from '../../../redux/user/user.actions';
 
-const TitleText = styled.Text`
-  font-family: Gadamer;
-  font-size: 42px;
-`;
+interface props {
+  logout: (tkn: string) => void;
+}
 
-const LogoutImage = styled.Image.attrs({
-  source: require('../../../../assets/icons/log-out.png'),
-})`
-  width: 36px;
-  height: 36px;
-  tint-color: #e5e1e2;
-`;
-
-const Header = styled.ImageBackground.attrs({
-  source: require('../../../../assets/gradients/grad5.png'),
-  imageStyle: {borderRadius: 14},
-})`
-  width: 93%;
-  height: 24%;
-  align-self: center;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const HeaderText = styled.Text`
-  font-family: bahnschrift;
-  font-size: 18px;
-  color: #222021;
-`;
-
-const ClayChart = styled.Image.attrs({
-  source: require('../../../../assets/clays/chart-1.png'),
-})`
-  width: 130px;
-  height: 138px;
-`;
-
-const BodyContainer = styled.View`
-  flex: 0.8;
-  justify-content: space-between;
-`;
-
-const RowContainer = styled.View`
-  flex-direction: row;
-  justify-content: space-around;
-`;
-
-const ItemBackground = styled.ImageBackground.attrs({
-  imageStyle: {borderRadius: 14},
-})`
-  width: 42%;
-  /* height: 60%; */
-  align-items: center;
-  padding: 3%;
-  justify-content: space-around;
-`;
-
-const RocketImage = styled.Image`
-  width: 120px;
-  height: 122px;
-`;
-
-const ItemText = styled.Text`
-  font-family: bahnschrift;
-  font-size: 21px;
-  color: #222021;
-  margin-top: 14px;
-`;
-
-interface props {}
-
-const Dashboard: React.FC<props> = () => {
+const Dashboard: React.FC<props> = ({logout}) => {
+  const {dark} = useThemeContext();
+  const {token, clearSession} = useTokenContext();
+  console.log('from dashboard', token);
   return (
-    <DashboardContainer>
+    <DashboardContainer dark={dark}>
       <TitleBar>
-        <TitleText>Payzer</TitleText>
-        <LogoutImage />
+        <TitleText dark={dark}>Payzer</TitleText>
+        <TouchableOpacity
+          onPress={() => {
+            console.log(token);
+            logout(token.key);
+            clearSession();
+          }}>
+          <LogoutImage dark={dark} />
+        </TouchableOpacity>
       </TitleBar>
-      <Header>
+      <Header dark={dark}>
         <View>
           <HeaderText>Credited: 10,000 Rs</HeaderText>
           <HeaderText>Debited: 5,000 Rs</HeaderText>
@@ -108,6 +54,7 @@ const Dashboard: React.FC<props> = () => {
       <BodyContainer>
         <RowContainer>
           <ItemBackground
+            dark={dark}
             source={require('../../../../assets/gradients/grad2.png')}>
             <RocketImage
               source={require('../../../../assets/clays/rocket.png')}
@@ -115,6 +62,7 @@ const Dashboard: React.FC<props> = () => {
             <ItemText>Transfer</ItemText>
           </ItemBackground>
           <ItemBackground
+            dark={dark}
             source={require('../../../../assets/gradients/grad1.png')}>
             <RocketImage
               source={require('../../../../assets/clays/book.png')}
@@ -124,6 +72,7 @@ const Dashboard: React.FC<props> = () => {
         </RowContainer>
         <RowContainer>
           <ItemBackground
+            dark={dark}
             source={require('../../../../assets/gradients/grad5.png')}>
             <RocketImage
               source={require('../../../../assets/clays/wallet-1.png')}
@@ -131,6 +80,7 @@ const Dashboard: React.FC<props> = () => {
             <ItemText>Wallet</ItemText>
           </ItemBackground>
           <ItemBackground
+            dark={dark}
             source={require('../../../../assets/gradients/grad4.png')}>
             <RocketImage
               source={require('../../../../assets/clays/tools.png')}
@@ -143,4 +93,8 @@ const Dashboard: React.FC<props> = () => {
   );
 };
 
-export default Dashboard;
+const mapDispatchToProps = (dispatch: Function) => ({
+  logout: (tkn: string) => dispatch(logoutUser(tkn)),
+});
+
+export default connect(null, mapDispatchToProps)(Dashboard);

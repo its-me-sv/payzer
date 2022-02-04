@@ -9,6 +9,7 @@ interface TokenInterface {
 interface TokenContextInterface {
   token: TokenInterface;
   setSession?: (tkn: string) => void;
+  clearSession?: () => void;
 }
 
 const defaultState: TokenContextInterface = {
@@ -24,10 +25,8 @@ export const TokenContextProvider: React.FC = ({children}) => {
   useEffect(() => {
     EncryptedStorage.getItem('payzer_token')
       .then(value => {
-        console.log('onmount', typeof value, value);
         if (value) {
-          console.log('here at unmount', value);
-          setToken(value);
+          setToken(JSON.parse(value));
         }
       })
       .catch(console.log);
@@ -38,14 +37,24 @@ export const TokenContextProvider: React.FC = ({children}) => {
       key: tkn,
       iat: Date.now(),
     };
-    setToken(TokenObject);
     EncryptedStorage.setItem('payzer_token', JSON.stringify(TokenObject))
-      .then(() => console.log('setted'))
+      .then(() => {
+        setToken(TokenObject);
+        console.log('setted');
+      })
       .catch(console.log);
   };
 
+  const clearSession = async () => {
+    try {
+      await EncryptedStorage.clear();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <TokenContext.Provider value={{token, setSession}}>
+    <TokenContext.Provider value={{token, setSession, clearSession}}>
       {children}
     </TokenContext.Provider>
   );
