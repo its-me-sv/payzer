@@ -39,3 +39,41 @@ export const ContentText = styled.Text<Theme>`
   color: #e5e1e2;
   ${({dark}) => !dark && 'color: #222021;'}
 `;
+
+export const CredContainer = styled.View<Theme>`
+  flex: 1;
+  align-self: center;
+  justify-content: center;
+  background-color: #222021;
+  width: 100%;
+  ${({dark}) => !dark && 'background-color: #e5e1e2;'}
+`;
+
+export const Footer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const CredTitleText = styled.Text<Theme>`
+  align-self: center;
+  font-family: calibri;
+  font-size: 36px;
+`;
+
+export const Header = styled.View`
+  padding-top: 4%;
+  align-self: center;
+`;
+
+export const Body = styled.View`
+  align-self: center;
+  padding-top: 3%;
+  padding-bottom: 4%;
+`;
+
+export const Spacer = styled.View`
+  margin: 2%;
+`;
+
+export const CredModal = styled.Modal<Theme>``;
