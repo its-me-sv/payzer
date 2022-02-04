@@ -11,10 +11,12 @@ import {useAPIContext} from '../../context/api.context';
 import {AppState, PayzerUser} from '../../redux/types';
 import {userSuccess} from '../../redux/user/user.actions';
 import {fetchForex} from '../../redux/forex/forex.actions';
+import {AppParamList} from './app.types';
 
 import Dashboard from '../../features/dashboard/screens/dashboard.screen';
+import SettingsScreen from '../../features/settings/screens/settings.screen';
 
-const AppStack = createNativeStackNavigator();
+const AppStack = createNativeStackNavigator<AppParamList>();
 
 interface VerifyResponseData {
   newAccount: boolean;
@@ -34,6 +36,7 @@ interface RefreshResponseData {
 
 const screenOptions: NativeStackNavigationOptions = {
   headerShown: false,
+  animation: 'fade',
 };
 
 const AppNavigator: React.FC<props> = ({phoneNo, setUser, getForex}) => {
@@ -82,6 +85,7 @@ const AppNavigator: React.FC<props> = ({phoneNo, setUser, getForex}) => {
   return (
     <AppStack.Navigator screenOptions={screenOptions}>
       <AppStack.Screen name="dashboard" component={Dashboard} />
+      <AppStack.Screen name="settings" component={SettingsScreen} />
     </AppStack.Navigator>
   );
 };

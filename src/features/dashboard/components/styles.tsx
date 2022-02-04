@@ -78,7 +78,7 @@ export const RowContainer = styled.View`
 export const ItemBackground = styled.ImageBackground.attrs({
   imageStyle: {borderRadius: 14},
 })<Theme>`
-  width: 42%;
+  width: 100%;
   align-items: center;
   padding: 3%;
   justify-content: space-around;
@@ -98,4 +98,8 @@ export const ItemText = styled.Text`
   font-size: 21px;
   color: #222021;
   margin-top: 14px;
+`;
+
+export const TouchWrapper = styled.TouchableOpacity`
+  width: 42%;
 `;
