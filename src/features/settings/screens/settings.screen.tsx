@@ -20,12 +20,12 @@ const lighted: ImageRequireSource = require('../../../../assets/clays/bulb-2.png
 const TextImage: ImageRequireSource = require('../../../../assets/clays/text.png');
 const CopyImage: ImageRequireSource = require('../../../../assets/clays/copy-1.png');
 
-const SettingsScreen: React.FC<props> = () => {
-  const {dark} = useThemeContext();
+const SettingsScreen: React.FC<props> = ({navigation}) => {
+  const {dark, toggleDark} = useThemeContext();
   return (
     <Container dark={dark}>
       <TitleText dark={dark}>Settings</TitleText>
-      <TouchWrapper>
+      <TouchWrapper onPress={toggleDark}>
         <ClayImage source={dark ? darked : lighted} />
         <ContentText dark={dark}>Switch to light mode</ContentText>
       </TouchWrapper>
@@ -33,7 +33,7 @@ const SettingsScreen: React.FC<props> = () => {
         <ClayImage source={TextImage} />
         <ContentText dark={dark}>Edit credentials</ContentText>
       </TouchWrapper>
-      <TouchWrapper>
+      <TouchWrapper onPress={() => navigation.navigate('conditions')}>
         <ClayImage source={CopyImage} />
         <ContentText dark={dark}>Terms and Policies</ContentText>
       </TouchWrapper>
