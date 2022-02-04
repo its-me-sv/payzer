@@ -10,6 +10,7 @@ import {useTokenContext} from '../../context/token.context';
 import {useAPIContext} from '../../context/api.context';
 import {AppState, PayzerUser} from '../../redux/types';
 import {userSuccess} from '../../redux/user/user.actions';
+import {fetchForex} from '../../redux/forex/forex.actions';
 
 import Dashboard from '../../features/dashboard/screens/dashboard.screen';
 
@@ -24,6 +25,7 @@ interface VerifyResponseData {
 interface props {
   phoneNo: string;
   setUser: (user: PayzerUser) => void;
+  getForex: () => void;
 }
 
 interface RefreshResponseData {
@@ -34,7 +36,7 @@ const screenOptions: NativeStackNavigationOptions = {
   headerShown: false,
 };
 
-const AppNavigator: React.FC<props> = ({phoneNo, setUser}) => {
+const AppNavigator: React.FC<props> = ({phoneNo, setUser, getForex}) => {
   const {token, setSession} = useTokenContext();
   const {REST_API} = useAPIContext();
   useEffect(() => {
@@ -74,6 +76,9 @@ const AppNavigator: React.FC<props> = ({phoneNo, setUser}) => {
     console.log(token);
     startupFunc();
   }, [token, setSession]);
+  useEffect(() => {
+    getForex();
+  }, []);
   return (
     <AppStack.Navigator screenOptions={screenOptions}>
       <AppStack.Screen name="dashboard" component={Dashboard} />
@@ -87,6 +92,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps2 = (dispatch: Function) => ({
   setUser: (user: PayzerUser) => dispatch(userSuccess(user)),
+  getForex: () => dispatch(fetchForex()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps2)(AppNavigator);

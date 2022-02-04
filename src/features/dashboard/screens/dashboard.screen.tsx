@@ -6,20 +6,18 @@ import {
   DashboardContainer,
   TitleBar,
   TitleText,
-  Header,
-  ClayChart,
   BodyContainer,
   RowContainer,
   ItemBackground,
   RocketImage,
   ItemText,
   LogoutImage,
-  HeaderText,
 } from '../components/styles';
 
 import {useThemeContext} from '../../../context/theme.context';
 import {useTokenContext} from '../../../context/token.context';
 import {logoutUser} from '../../../redux/user/user.actions';
+import StatsBoard from '../components/stats.component';
 
 interface props {
   logout: (tkn: string) => void;
@@ -42,15 +40,7 @@ const Dashboard: React.FC<props> = ({logout}) => {
           <LogoutImage dark={dark} />
         </TouchableOpacity>
       </TitleBar>
-      <Header dark={dark}>
-        <View>
-          <HeaderText>Credited: 10,000 Rs</HeaderText>
-          <HeaderText>Debited: 5,000 Rs</HeaderText>
-          <HeaderText>Cards: 3</HeaderText>
-          <HeaderText>Balance: 5,000 Rs</HeaderText>
-        </View>
-        <ClayChart />
-      </Header>
+      <StatsBoard />
       <BodyContainer>
         <RowContainer>
           <ItemBackground

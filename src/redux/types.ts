@@ -29,9 +29,20 @@ export interface UserState {
   user: null | PayzerUser;
 }
 
+export interface Forex {
+  [key: string]: number;
+}
+
+export interface ForexState {
+  pending: boolean;
+  error: null | Error;
+  forex: null | Forex;
+}
+
 export interface AppState {
   slider: SliderState;
   user: UserState;
+  forex: ForexState;
 }
 
 export interface ExtraDispatchArgs {}
