@@ -15,42 +15,42 @@ interface ThemedPhoneProps extends PhoneInputProps {
   dark: boolean;
 }
 
-const CustomisedPhoneNoInput = styled(PhoneInput).attrs<ThemedPhoneProps>(
-  ({dark}) => ({
-    textContainerStyle: {
-      borderRadius: 10,
-      paddingHorizontal: 0,
-      paddingVertical: 0,
-      backgroundColor: dark ? '#222021' : '#e5e1e2',
-    },
-    containerStyle: {
-      borderRadius: 10,
-      elevation: 7,
-      borderWidth: 1,
-      borderColor: !dark ? '#222021' : '#e5e1e2',
-      width: '100%',
-      backgroundColor: dark ? '#222021' : '#e5e1e2',
-    },
-    textInputStyle: {
-      fontSize: 18,
-      color: !dark ? '#222021' : '#e5e1e2',
-    },
-    codeTextStyle: {
-      fontSize: 18,
-      color: !dark ? '#222021' : '#e5e1e2',
-    },
-    countryPickerButtonStyle: {
-      color: 'blue',
-    },
-  }),
-)``;
+export const CustomisedPhoneNoInput = styled(
+  PhoneInput,
+).attrs<ThemedPhoneProps>(({dark, fromCred}) => ({
+  textContainerStyle: {
+    borderRadius: 10,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    backgroundColor: dark ? '#222021' : '#e5e1e2',
+  },
+  containerStyle: {
+    borderRadius: 10,
+    elevation: 7,
+    borderWidth: 1,
+    borderColor: !dark ? '#222021' : '#e5e1e2',
+    width: fromCred ? '88%' : '100%',
+    backgroundColor: dark ? '#222021' : '#e5e1e2',
+  },
+  textInputStyle: {
+    fontSize: 18,
+    color: !dark ? '#222021' : '#e5e1e2',
+  },
+  codeTextStyle: {
+    fontSize: 18,
+    color: !dark ? '#222021' : '#e5e1e2',
+  },
+  countryPickerButtonStyle: {
+    color: 'blue',
+  },
+}))``;
 
 const Seperator = styled.View`
   margin-top: 7px;
   margin-bottom: 7px;
 `;
 
-interface Country {
+export interface Country {
   callingCode: string[];
   cca2: string;
   currency: string[];
@@ -60,7 +60,7 @@ interface Country {
   subregion: string;
 }
 
-const India: Country = {
+export const India: Country = {
   callingCode: ['91'],
   cca2: 'IN',
   currency: ['INR'],

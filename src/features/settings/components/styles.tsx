@@ -67,7 +67,7 @@ export const Header = styled.View`
 `;
 
 export const Body = styled.View`
-  align-self: center;
+  align-items: center;
   padding-top: 3%;
   padding-bottom: 4%;
 `;
