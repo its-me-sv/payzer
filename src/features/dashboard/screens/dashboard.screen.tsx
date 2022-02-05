@@ -67,7 +67,7 @@ const Dashboard: React.FC<props> = ({logout, navigation}) => {
           </TouchWrapper>
         </RowContainer>
         <RowContainer>
-          <TouchWrapper>
+          <TouchWrapper onPress={() => navigation.navigate('wallet')}>
             <ItemBackground
               dark={dark}
               source={require('../../../../assets/gradients/grad5.png')}>

@@ -5,6 +5,7 @@ export type AppParamList = {
   dashboard: undefined;
   settings: undefined;
   conditions: undefined;
+  wallet: undefined;
 };
 
 export type AppParamProps<T extends keyof AppParamList> = {
