@@ -25,14 +25,19 @@ const CopyImage: ImageRequireSource = require('../../../../assets/clays/copy-1.p
 const SettingsScreen: React.FC<props> = ({navigation}) => {
   const {dark, toggleDark} = useThemeContext();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   return (
     <>
       <CredModal
         dark={dark}
         visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}>
-        <Credentials cancel={() => setModalVisible(false)} />
+        onRequestClose={() => !loading && setModalVisible(false)}>
+        <Credentials
+          loaderSetter={setLoading}
+          loading={loading}
+          cancel={() => setModalVisible(false)}
+        />
       </CredModal>
       <Container dark={dark}>
         <TitleText dark={dark}>Settings</TitleText>

@@ -23,6 +23,12 @@ const UserReducer: Reducer<UserState, AppAction> = (
       return {pending: false, error: null, user: action.payload};
     case userTypes.USER_RESET:
       return {pending: false, error: null, user: null};
+    case userTypes.UPDATE_USER: {
+      const oldUser = {...state.user};
+      const newUser = {...oldUser, ...action.payload};
+      console.log(oldUser, newUser);
+      return {user: newUser};
+    }
     default:
       return state;
   }

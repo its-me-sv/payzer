@@ -11,7 +11,7 @@ import {useAPIContext} from '../../../context/api.context';
 import {PayzerUser} from '../../../redux/types';
 import {userSuccess} from '../../../redux/user/user.actions';
 
-const ImageTypes: {[key: string]: string} = {
+export const ImageTypes: {[key: string]: string} = {
   gif: 'image/gif',
   jpg: 'image/jpeg',
   jpeg: 'image/jpeg',
@@ -23,7 +23,7 @@ interface props {
   setUser: (user: PayzerUser) => void;
 }
 
-interface ImageResponse {
+export interface ImageResponse {
   secure_url: 'string';
   [key: string]: string;
 }

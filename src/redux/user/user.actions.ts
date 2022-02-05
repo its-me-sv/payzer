@@ -35,3 +35,9 @@ export const logoutUser = (token: string) => dispatch => {
     .then(() => dispatch(userReset()))
     .catch(console.log);
 };
+
+export const updateUser = (userData: PayzerUser) =>
+  <AppAction>{
+    type: userTypes.UPDATE_USER,
+    payload: userData,
+  };
