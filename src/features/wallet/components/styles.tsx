@@ -42,9 +42,7 @@ export const BodyWrapper = styled.View`
   justify-content: space-around;
 `;
 
-export const CardImage = styled.ImageBackground.attrs({
-  source: require('../../../../assets/clays/card-1.png'),
-})`
+export const CardImage = styled.ImageBackground`
   width: 90%;
   height: 30%;
 `;

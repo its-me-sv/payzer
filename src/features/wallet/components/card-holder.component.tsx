@@ -1,21 +1,17 @@
 import React from 'react';
 
-import {BodyWrapper, CardImage, CardId} from './styles';
+import {BodyWrapper} from './styles';
+
+import Card from './card.component';
 
 interface props {}
 
 const AllCards: React.FC<props> = () => {
   return (
     <BodyWrapper>
-      <CardImage>
-        <CardId>1234-5678-9101-1121</CardId>
-      </CardImage>
-      <CardImage>
-        <CardId>1234-5678-9101-1121</CardId>
-      </CardImage>
-      <CardImage>
-        <CardId>1234-5678-9101-1121</CardId>
-      </CardImage>
+      <Card variant={1} />
+      <Card variant={2} />
+      <Card variant={3} />
     </BodyWrapper>
   );
 };

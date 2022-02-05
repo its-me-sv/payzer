@@ -35,7 +35,7 @@ const WalletsScreen: React.FC<props> = () => {
 };
 
 const mapStateToProps = (state: AppState) => ({
-  userId: state.user.user?.id?.slice(4, -8),
+  userId: state.user.user?.id,
 });
 
 export default connect(mapStateToProps)(WalletsScreen);
