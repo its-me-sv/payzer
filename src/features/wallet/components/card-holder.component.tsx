@@ -14,7 +14,7 @@ const AllCards: React.FC<props> = ({cards}) => {
   return (
     <BodyWrapper>
       {cards.map((card, idx) => (
-        <Card key={idx} variant={idx + 1} />
+        <Card key={idx} cardId={card.id} variant={idx + 1} />
       ))}
     </BodyWrapper>
   );

@@ -43,8 +43,8 @@ export const BodyWrapper = styled.View`
 `;
 
 export const CardImage = styled.ImageBackground`
-  width: 90%;
-  height: 32%;
+  width: 100%;
+  height: 100%;
 `;
 
 export const CardId = styled.Text`
@@ -55,4 +55,10 @@ export const CardId = styled.Text`
   align-self: center;
   font-size: 21px;
   opacity: 0.8;
+  letter-spacing: 3px;
+`;
+
+export const TouchWrapper = styled.TouchableOpacity`
+  width: 88%;
+  height: 30%;
 `;

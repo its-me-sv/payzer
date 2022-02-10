@@ -18,9 +18,14 @@ const CardsReducer: Reducer<CardState, AppAction> = (
     case cardTypes.CARD_PENDING:
       return {...state, pending: true};
     case cardTypes.CARD_FAILURE:
-      return {pending: false, error: action.payload, cards: []};
+      return {...state, pending: false, error: action.payload};
     case cardTypes.CARD_SUCCESS:
       return {pending: false, error: null, cards: action.payload};
+    case cardTypes.CARD_NEW: {
+      const oldCards = state.cards;
+      const newCards = [...oldCards, action.payload];
+      return {pending: false, error: null, cards: newCards};
+    }
     default:
       return state;
   }

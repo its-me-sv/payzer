@@ -8,7 +8,7 @@ import {AppState, PayzerCard} from '../../../redux/types';
 
 import BlockLoader from '../../../components/loader';
 import AllCards from '../components/card-holder.component';
-import {fetchCards} from '../../../redux/cards/card.actions';
+import {fetchCards, createNewCard} from '../../../redux/cards/card.actions';
 import {useTokenContext} from '../../../context/token.context';
 
 import {
@@ -24,6 +24,7 @@ interface props extends AppParamProps<'wallet'> {
   cardsPending: boolean;
   getCards: (id: string, tkn: string) => void;
   cards: Array<PayzerCard>;
+  createCard: (id: string, tkn: string) => void;
 }
 
 const WalletsScreen: React.FC<props> = ({
@@ -31,12 +32,15 @@ const WalletsScreen: React.FC<props> = ({
   getCards,
   userId,
   cards,
+  createCard,
 }) => {
   const {token} = useTokenContext();
   useEffect(() => {
     getCards(userId, token.key);
   }, []);
-  const addNewCard = () => {};
+  const addNewCard = () => {
+    createCard(userId, token.key);
+  };
   const {dark} = useThemeContext();
   return (
     <WalletsWrapper dark={dark}>
@@ -61,6 +65,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Function) => ({
   getCards: (id: string, tkn: string) => dispatch(fetchCards(id, tkn)),
+  createCard: (id: string, tkn: string) => dispatch(createNewCard(id, tkn)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletsScreen);
