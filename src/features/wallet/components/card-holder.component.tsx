@@ -1,19 +1,27 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import {BodyWrapper} from './styles';
 
 import Card from './card.component';
+import {AppState, PayzerCard} from '../../../redux/types';
 
-interface props {}
+interface props {
+  cards: Array<PayzerCard>;
+}
 
-const AllCards: React.FC<props> = () => {
+const AllCards: React.FC<props> = ({cards}) => {
   return (
     <BodyWrapper>
-      <Card variant={1} />
-      <Card variant={2} />
-      <Card variant={3} />
+      {cards.map((card, idx) => (
+        <Card key={idx} variant={idx + 1} />
+      ))}
     </BodyWrapper>
   );
 };
 
-export default AllCards;
+const mapStateToProps = (state: AppState) => ({
+  cards: state.cards.cards,
+});
+
+export default connect(mapStateToProps)(AllCards);

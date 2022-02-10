@@ -39,10 +39,25 @@ export interface ForexState {
   forex: null | Forex;
 }
 
+export interface PayzerCard {
+  id: string;
+  is_primary: boolean;
+  credit?: number;
+  debit?: number;
+  created_at?: string;
+}
+
+export interface CardState {
+  pending: boolean;
+  error: null | Error;
+  cards: Array<PayzerCard>;
+}
+
 export interface AppState {
   slider: SliderState;
   user: UserState;
   forex: ForexState;
+  cards: CardState;
 }
 
 export interface ExtraDispatchArgs {}

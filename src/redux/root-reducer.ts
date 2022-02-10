@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import SliderReducer from './slider/slider.reducer';
 import UserReducer from './user/user.reducer';
 import ForexReducer from './forex/forex.reducer';
+import CardsReducer from './cards/card.reducer';
 import {AppState} from './types';
 
 const persistConfig: PersistConfig<AppState> = {
@@ -17,6 +18,7 @@ const rootReducer = combineReducers<AppState>({
   slider: SliderReducer,
   user: UserReducer,
   forex: ForexReducer,
+  cards: CardsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
