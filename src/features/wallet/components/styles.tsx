@@ -44,7 +44,7 @@ export const BodyWrapper = styled.View`
 
 export const CardImage = styled.ImageBackground`
   width: 90%;
-  height: 30%;
+  height: 32%;
 `;
 
 export const CardId = styled.Text`

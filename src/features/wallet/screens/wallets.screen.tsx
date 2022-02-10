@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
+import {Button} from 'react-native';
 
 import {AppParamProps} from '../../../infrastructure/navigation/app.types';
 import {useThemeContext} from '../../../context/theme.context';
-import {AppState} from '../../../redux/types';
+import {AppState, PayzerCard} from '../../../redux/types';
 
 import BlockLoader from '../../../components/loader';
 import AllCards from '../components/card-holder.component';
@@ -22,13 +23,20 @@ interface props extends AppParamProps<'wallet'> {
   userId: string;
   cardsPending: boolean;
   getCards: (id: string, tkn: string) => void;
+  cards: Array<PayzerCard>;
 }
 
-const WalletsScreen: React.FC<props> = ({cardsPending, getCards, userId}) => {
+const WalletsScreen: React.FC<props> = ({
+  cardsPending,
+  getCards,
+  userId,
+  cards,
+}) => {
   const {token} = useTokenContext();
   useEffect(() => {
     getCards(userId, token.key);
   }, []);
+  const addNewCard = () => {};
   const {dark} = useThemeContext();
   return (
     <WalletsWrapper dark={dark}>
@@ -40,6 +48,7 @@ const WalletsScreen: React.FC<props> = ({cardsPending, getCards, userId}) => {
         </Touchable>
       </HeaderWrapper>
       <AllCards />
+      {cards.length < 3 && <Button title="Add Card" onPress={addNewCard} />}
     </WalletsWrapper>
   );
 };
@@ -47,6 +56,7 @@ const WalletsScreen: React.FC<props> = ({cardsPending, getCards, userId}) => {
 const mapStateToProps = (state: AppState) => ({
   userId: state.user.user?.id,
   cardsPending: state.cards.pending,
+  cards: state.cards.cards,
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
