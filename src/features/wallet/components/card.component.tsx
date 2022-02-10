@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {ImageRequireSource} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import {CardImage, CardId, TouchWrapper} from './styles';
 import {PayzerCard} from '../../../redux/types';
@@ -21,6 +22,7 @@ interface props {
 const Card: React.FC<props> = ({variant, cardId}) => {
   const {REST_API} = useAPIContext();
   const {token} = useTokenContext();
+  const navigation = useNavigation();
   const [card, setCard] = useState<PayzerCard>();
   useEffect(() => {
     fetch(`${REST_API}/cards/card/${cardId}`, {
@@ -34,8 +36,14 @@ const Card: React.FC<props> = ({variant, cardId}) => {
       })
       .catch(console.log);
   }, []);
+  const handlePress = () => {
+    if (!card) {
+      return;
+    }
+    navigation.navigate('card-detail' as never, {card, variant} as never);
+  };
   return (
-    <TouchWrapper>
+    <TouchWrapper onPress={handlePress}>
       <CardImage source={variants[variant]}>
         {!card ? (
           <BlockLoader />

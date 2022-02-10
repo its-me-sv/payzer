@@ -46,7 +46,7 @@ export const Header = styled.ImageBackground.attrs({
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  border-width: 3px;
+  border-width: 1.4px;
   border-radius: 18px;
   border-color: #e5e1e2;
   ${({dark}) => !dark && 'border-color: #222021;'}
@@ -82,7 +82,7 @@ export const ItemBackground = styled.ImageBackground.attrs({
   align-items: center;
   padding: 3%;
   justify-content: space-around;
-  border-width: 3px;
+  border-width: 1.4px;
   border-radius: 18px;
   border-color: #e5e1e2;
   ${({dark}) => !dark && 'border-color: #222021;'}

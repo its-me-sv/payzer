@@ -17,6 +17,7 @@ import Dashboard from '../../features/dashboard/screens/dashboard.screen';
 import SettingsScreen from '../../features/settings/screens/settings.screen';
 import ConditionsScreen from '../../components/conditions';
 import WalletsScreen from '../../features/wallet/screens/wallets.screen';
+import CardDetail from '../../features/wallet/screens/card-detail.screen';
 
 const AppStack = createNativeStackNavigator<AppParamList>();
 
@@ -90,6 +91,7 @@ const AppNavigator: React.FC<props> = ({phoneNo, setUser, getForex}) => {
       <AppStack.Screen name="settings" component={SettingsScreen} />
       <AppStack.Screen name="conditions" component={ConditionsScreen} />
       <AppStack.Screen name="wallet" component={WalletsScreen} />
+      <AppStack.Screen name="card-detail" component={CardDetail} />
     </AppStack.Navigator>
   );
 };
