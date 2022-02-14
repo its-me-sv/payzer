@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {Button} from 'react-native';
+import {Button, Modal} from 'react-native';
 
 import {AppParamProps} from '../../../infrastructure/navigation/app.types';
 import {useThemeContext} from '../../../context/theme.context';
@@ -10,6 +10,7 @@ import BlockLoader from '../../../components/loader';
 import AllCards from '../components/card-holder.component';
 import {fetchCards, createNewCard} from '../../../redux/cards/card.actions';
 import {useTokenContext} from '../../../context/token.context';
+import AddAmount from './add-amount.screen';
 
 import {
   WalletsWrapper,
@@ -35,6 +36,7 @@ const WalletsScreen: React.FC<props> = ({
   createCard,
 }) => {
   const {token} = useTokenContext();
+  const [showAddAmount, setShowAddAmount] = useState<boolean>(false);
   useEffect(() => {
     getCards(userId, token.key);
   }, []);
@@ -44,10 +46,17 @@ const WalletsScreen: React.FC<props> = ({
   const {dark} = useThemeContext();
   return (
     <WalletsWrapper dark={dark}>
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={showAddAmount}
+        onRequestClose={() => setShowAddAmount(false)}>
+        <AddAmount setModal={setShowAddAmount} />
+      </Modal>
       {cardsPending && <BlockLoader />}
       <HeaderWrapper>
         <TitleText dark={dark}>Wallet</TitleText>
-        <Touchable>
+        <Touchable onPress={() => setShowAddAmount(true)}>
           <AddImage dark={dark} />
         </Touchable>
       </HeaderWrapper>

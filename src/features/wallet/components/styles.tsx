@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {Picker, PickerProps} from '@react-native-picker/picker';
 
 interface Theme {
   dark: boolean;
@@ -135,4 +136,62 @@ export const ItemText = styled.Text<Theme>`
   opacity: 0.7;
   color: #222021;
   ${({dark}) => dark && 'color: #e5e1e2;'}
+`;
+
+export const AddAmountView = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexGrow: 1,
+  },
+})<Theme>`
+  background-color: rgba(34, 32, 32, 0.6);
+  ${({dark}) => dark && 'background-color: rgba(229, 225, 226, 0.6);'}
+`;
+
+export const AddAmountContainer = styled.View<Theme>`
+  justify-content: space-around;
+  background-color: #222021;
+  ${({dark}) => !dark && 'background-color: #e5e1e2;'}
+  border-radius: 14px;
+  width: 84%;
+  padding: 7%;
+`;
+
+export const ModalTitle = styled.Text<Theme>`
+  font-family: calibri;
+  font-size: 21px;
+  color: #222021;
+  ${({dark}) => dark && 'color: #e5e1e2;'}
+  align-self: center;
+`;
+
+export const ButtonsContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const AmountInput = styled.TextInput.attrs({
+  keyboardType: 'decimal-pad',
+})<Theme>`
+  font-family: bahnschrift;
+  font-size: 18px;
+  border-width: 0.7px;
+  padding: 6px;
+  border-radius: 7px;
+  text-align: center;
+  margin-bottom: 14px;
+  border-color: #222021;
+  ${({dark}) => dark && 'border-color: #e5e1e2;'}
+`;
+
+export const PickerHolder = styled.View<Theme>`
+  width: 100%;
+  border-width: 1px;
+  border-radius: 7px;
+  margin-bottom: 14px;
+  margin-top: 14px;
+  border-color: #222021;
+  ${({dark}) => dark && 'border-color: #e5e1e2;'}
 `;
