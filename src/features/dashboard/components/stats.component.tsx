@@ -53,7 +53,7 @@ const mapStateToProps = (state: AppState) => ({
   debits: state.user.user?.debit,
   cards: state.user.user?.card_count,
   currency: state.user.user?.country?.split('/')[1],
-  rates: state.forex.forex,
+  rates: state.forex.forex || {},
 });
 
 export default connect(mapStateToProps)(StatsBoard);

@@ -7,7 +7,7 @@ import {ForexState, AppAction} from '../types';
 const initialState: ForexState = {
   pending: false,
   error: null,
-  forex: null,
+  forex: {},
 };
 
 const ForexReducer: Reducer<ForexState, AppAction> = (
@@ -20,7 +20,7 @@ const ForexReducer: Reducer<ForexState, AppAction> = (
     case forexTypes.FOREX_FAILURE:
       return {...state, pending: false, error: action.payload};
     case forexTypes.FOREX_SUCCESS:
-      return {...state, pending: false, forex: action.payload};
+      return {...state, pending: false, forex: action.payload || {}};
     default:
       return state;
   }
