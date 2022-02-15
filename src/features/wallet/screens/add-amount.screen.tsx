@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Button} from 'react-native';
 import {connect} from 'react-redux';
 import {Picker} from '@react-native-picker/picker';
+import axios from 'axios';
 
 import {
   AddAmountView,
@@ -11,26 +12,65 @@ import {
   AmountInput,
   PickerHolder,
 } from '../components/styles';
+import BlockLoader from '../../../components/loader';
 import {useThemeContext} from '../../../context/theme.context';
-import {AppState, PayzerCard} from '../../../redux/types';
+import {useTokenContext} from '../../../context/token.context';
+import {useAPIContext} from '../../../context/api.context';
+import {AppState, Forex, PayzerCard} from '../../../redux/types';
 
 interface props {
   setModal: (val: boolean) => void;
   cards: Array<PayzerCard>;
   currency: string;
+  rates: Forex;
+  userId: string;
 }
 
-const AddAmount: React.FC<props> = ({setModal, cards, currency}) => {
+const AddAmount: React.FC<props> = ({
+  setModal,
+  cards,
+  currency,
+  rates,
+  userId,
+}) => {
   const {dark} = useThemeContext();
+  const {token} = useTokenContext();
+  const {REST_API} = useAPIContext();
   const [selectedCard, setSelectedCard] = useState<string>(cards[0].id);
   const [amount, setAmount] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const onDeposit = () => {
-    console.log(selectedCard, amount);
+    setLoading(true);
+
+    const rate = rates[currency.toLowerCase()] || 1;
+    const finalAmount = +(Number(amount) / rate).toFixed(3);
+
+    const headers = {
+      Authorization: `Bearer ${token.key}`,
+    };
+
+    const requestBody = {
+      user_id: userId,
+      card_id: selectedCard,
+      amount: finalAmount,
+    };
+
+    axios
+      .put(`${REST_API}/cards/add-amount`, {...requestBody}, {headers})
+      .then(() => {
+        setLoading(false);
+        setModal(false);
+      })
+      .catch(err => {
+        setLoading(false);
+        console.log(err);
+      });
   };
 
   return (
     <AddAmountView dark={dark}>
+      {loading && <BlockLoader />}
       <AddAmountContainer dark={dark}>
         <ModalTitle dark={dark}>Add Amount To Card</ModalTitle>
         <PickerHolder dark={dark}>
@@ -70,6 +110,8 @@ const AddAmount: React.FC<props> = ({setModal, cards, currency}) => {
 const mapStateToProps = (state: AppState) => ({
   cards: state.cards.cards,
   currency: state.user.user?.country?.split('/')[1],
+  rates: state.forex.forex,
+  userId: state.user.user?.id,
 });
 
 export default connect(mapStateToProps)(AddAmount);
