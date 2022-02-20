@@ -34,7 +34,9 @@ export const StyledTextInput = styled.TextInput<Theme>`
   margin-bottom: 3%;
 `;
 
-export const ContactsContainer = styled.ScrollView``;
+export const ContactsContainer = styled.ScrollView`
+  margin-bottom: 1%;
+`;
 
 export const ContactContainer = styled.View`
   flex-direction: row;
