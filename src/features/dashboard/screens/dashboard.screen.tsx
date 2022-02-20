@@ -45,7 +45,7 @@ const Dashboard: React.FC<props> = ({logout, navigation}) => {
       <StatsBoard />
       <BodyContainer>
         <RowContainer>
-          <TouchWrapper>
+          <TouchWrapper onPress={() => navigation.navigate('transfer')}>
             <ItemBackground
               dark={dark}
               source={require('../../../../assets/gradients/grad2.png')}>

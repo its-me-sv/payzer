@@ -9,6 +9,7 @@ export type AppParamList = {
   conditions: undefined;
   wallet: undefined;
   'card-detail': {card: PayzerCard; variant: number};
+  transfer: undefined;
 };
 
 export type AppParamProps<T extends keyof AppParamList> = {
